@@ -1,6 +1,6 @@
 import requests
 import json
-from .config.config import GEMINI_API_KEY
+from config.config import GEMINI_API_KEY
 
 def get_ai_response(message):
     url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + GEMINI_API_KEY
