@@ -1,6 +1,6 @@
 from flask import Flask, request
 import requests
-from config.config import PAGE_ACCESS_TOKEN, VERIFY_TOKEN
+from config import PAGE_ACCESS_TOKEN, VERIFY_TOKEN
 from .ai_engine import get_ai_response
 
 app = Flask(__name__)
