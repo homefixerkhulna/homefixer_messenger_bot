@@ -2,6 +2,7 @@ from flask import Flask, request
 import requests
 from config import PAGE_ACCESS_TOKEN, VERIFY_TOKEN
 from ai_engine import get_ai_response
+import os
 
 app = Flask(__name__)
 FB_URL = 'https://graph.facebook.com/v13.0/me/messages'
@@ -34,5 +35,7 @@ def send_message(recipient_id, message_text):
     auth = {'access_token': PAGE_ACCESS_TOKEN}
     requests.post(FB_URL, params=auth, json=payload)
 
+
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
