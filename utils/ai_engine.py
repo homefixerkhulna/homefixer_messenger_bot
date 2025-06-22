@@ -4,10 +4,18 @@ import json
 from config.config import GEMINI_API_KEY
 
 def get_ai_response(message):
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={GEMINI_API_KEY}"
+    url = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=" + GEMINI_API_KEY
     headers = {"Content-Type": "application/json"}
-    prompt = f"You are a customer support assistant for HomeFixerKhulna. Reply in Bangla or English as needed. User: {message}"
-    payload = {"contents": [{"parts": [{"text": prompt}]}]}
+    payload = {
+        "contents": [
+            {
+                "role": "user",
+                "parts": [
+                    {"text": f"You are a customer support agent for HomeFixerKhulna. Reply in Bangla or English as needed. User: {message}"}
+                ]
+            }
+        ]
+    }
     try:
         response = requests.post(url, headers=headers, json=payload)
         data = response.json()
