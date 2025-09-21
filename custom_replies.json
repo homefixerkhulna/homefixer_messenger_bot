@@ -1,12 +1,16 @@
 {
-  "hi": "Hello! How can I help you?",
-  "hello": "Hi there! How can I assist you today?",
-  "হাই": "হ্যালো! আপনাকে কিভাবে সাহায্য করতে পারি?",
-  "location": "We are located at Khalishpur, Khulna.",
-  "লোকেশন": "আমাদের অবস্থান খুলনা, খালিশপুরে।",
-}
-{
   "replies": [
+    {
+      "question": "Hi",
+      "answer_bn": "আসসালামু আলাইকুম। HomeFixerKhulna-তে আপনাকে স্বাগতম! "
+                   "আমি আপনার ডিজিটাল সহকারী। আমি আপনাকে এসি, ফ্রিজ, ইলেকট্রিক, "
+                   "প্লাম্বিং এবং সিসিটিভি ক্যামেরা সার্ভিস সংক্রান্ত যেকোনো তথ্য দিয়ে সাহায্য করতে পারি। "
+                   "বলুন, আপনাকে কীভাবে সাহায্য করতে পারি?",
+      "answer_en": "Assalamu Alaikum. Welcome to HomeFixerKhulna! "
+                   "I am your digital assistant. I can help you with any information related to AC, Fridge, Electric, "
+                   "Plumbing and CCTV Camera Services. "
+                   "Tell me, how can I help you?",
+    },
     {
       "question": "এসি",
       "answer_bn": "হ্যাঁ, আমরা সকল ধরনের এসি সার্ভিস, মেরামত এবং ইনস্টলেশন প্রদান করি।",
