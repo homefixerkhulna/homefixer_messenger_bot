@@ -1,4 +1,5 @@
-langdetect
-openai
 flask
+openai
 requests
+langdetect
+waitress
