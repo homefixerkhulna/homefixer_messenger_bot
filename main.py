@@ -1,91 +1,71 @@
 import json
-import os
-from difflib import get_close_matches
-from flask import Flask, request, jsonify
-import requests
+import langdetect
+from openai import OpenAI
 
-from utils.ai_engine import get_ai_response
-from utils.sheets import save_lead
-from utils.voice import speech_to_text
-from utils.greeting import greeting_message
-from config.config import VERIFY_TOKEN, PAGE_ACCESS_TOKEN
+# OpenAI client init
+client = OpenAI()
 
-app = Flask(__name__)
-
-# --- Load custom replies from JSON file ---
+# custom replies লোড করা
 with open("custom_replies.json", "r", encoding="utf-8") as f:
-    CUSTOM_REPLIES = json.load(f)
+    custom_replies = json.load(f)
 
+# ভাষা detect
+def detect_language(text):
+    try:
+        lang = langdetect.detect(text)
+        if lang.startswith("bn"):
+            return "bn"
+        else:
+            return "en"
+    except:
+        return "en"
 
-def find_custom_reply(user_message):
-    user_message = user_message.lower().strip()
+# AI Response
+def get_ai_response(user_message, lang="en"):
+    if lang == "bn":
+        system_prompt = (
+            "আপনি একজন কাস্টমার সার্ভিস অ্যাসিস্ট্যান্ট। "
+            "সব প্রশ্নের উত্তর বাংলায় দিন। সংক্ষেপে, ভদ্রভাবে ও পরিষ্কারভাবে লিখুন। "
+            "HomeFixer Khulna এর সার্ভিসের সাথে সম্পর্কিত উত্তর দিন।"
+        )
+    else:
+        system_prompt = (
+            "You are a helpful customer service assistant. "
+            "Always reply in English. Keep answers short, polite and clear. "
+            "Focus on HomeFixer Khulna services."
+        )
 
-    # Exact match
-    if user_message in CUSTOM_REPLIES:
-        return CUSTOM_REPLIES[user_message]
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",   # lightweight, faster
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.4
+        )
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        print("AI error:", e)
+        return None
 
-    # Fuzzy match (similar word)
-    matches = get_close_matches(user_message, CUSTOM_REPLIES.keys(), n=1, cutoff=0.7)
-    if matches:
-        return CUSTOM_REPLIES[matches[0]]
+# Main reply ফাংশন
+def get_reply(user_message):
+    lang = detect_language(user_message)
 
-    return None
+    # Step 1: custom replies check
+    for item in custom_replies["replies"]:
+        if item["question"].lower() in user_message.lower():
+            return item["answer_bn"] if lang == "bn" else item["answer_en"]
 
+    # Step 2: AI response
+    ai_response = get_ai_response(user_message, lang=lang)
 
-@app.route("/", methods=["GET"])
-def verify():
-    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.verify_token") == VERIFY_TOKEN:
-        return request.args.get("hub.challenge"), 200
-    return "Verification failed", 403
+    if ai_response and len(ai_response.strip()) > 5:
+        return ai_response
 
-
-@app.route("/", methods=["POST"])
-def webhook():
-    data = request.json
-    for entry in data.get("entry", []):
-        for msg in entry.get("messaging", []):
-            sender_id = msg["sender"]["id"]
-
-            if "message" in msg:
-                user_message = msg["message"].get("text", "")
-
-                # Handle audio input
-                if "attachments" in msg["message"]:
-                    if msg["message"]["attachments"][0]["type"] == "audio":
-                        audio_url = msg["message"]["attachments"][0]["payload"]["url"]
-                        user_message = speech_to_text(audio_url)
-
-                if user_message:
-                    # ✅ First check custom replies
-                    custom_reply = find_custom_reply(user_message)
-
-                    if custom_reply:
-                        reply = custom_reply
-                    else:
-                        reply = get_ai_response(user_message)
-
-                    save_lead(sender_id, user_message)
-                    send_message(sender_id, reply)
-                else:
-                    send_message(sender_id, greeting_message)
-
-    return "OK", 200
-
-
-def send_message(recipient_id, message_text):
-    url = f"https://graph.facebook.com/v13.0/me/messages"
-    payload = {
-        "recipient": {"id": recipient_id},
-        "message": {"text": message_text}
-    }
-    headers = {"Content-Type": "application/json"}
-    params = {"access_token": PAGE_ACCESS_TOKEN}
-
-    response = requests.post(url, json=payload, headers=headers, params=params)
-    if response.status_code != 200:
-        print("Failed to send message:", response.text)
-
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    # Step 3: fallback default reply
+    if lang == "bn":
+        return "আমাদের একজন প্রতিনিধি সাথে যোগাযোগ করুন: WhatsApp: https://wa.me/8801711170639"
+    else:
+        return "Please contact our representative on WhatsApp: https://wa.me/8801711170639"
