@@ -1,4 +1,7 @@
 {
+{ "hi": "Hello! How can I help you 2025?",
+  "hello": "Hi there! How can I assist you today?",
+},
   "replies": [
     {
       "question": "Hi",
