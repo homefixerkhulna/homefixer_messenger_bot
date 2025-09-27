@@ -1,18 +1,15 @@
 import os
 import json
 import langdetect
-from openai import OpenAI
 from flask import Flask, request
 import requests
 
 from utils.sheets import save_lead
 from utils.voice import speech_to_text
 from config.config import VERIFY_TOKEN, PAGE_ACCESS_TOKEN
+from utils.ai_engine import get_ai_response
 
 app = Flask(__name__)
-
-# OpenAI client
-client = OpenAI()  # Make sure OPENAI_API_KEY is set
 
 # Load custom replies
 with open("custom_replies.json", "r", encoding="utf-8") as f:
@@ -45,35 +42,12 @@ def get_greeting(lang="bn"):
             "How can I assist you today?"
         )
 
-def get_ai_response(user_message, lang="en"):
-    """Generate AI response"""
-    system_prompt = (
-        "আপনি একজন কাস্টমার সার্ভিস অ্যাসিস্ট্যান্ট। সব প্রশ্নের উত্তর বাংলায় দিন। "
-        "সংক্ষেপে, ভদ্রভাবে ও পরিষ্কারভাবে লিখুন। HomeFixer Khulna এর সার্ভিসের সাথে সম্পর্কিত উত্তর দিন।"
-    ) if lang == "bn" else (
-        "You are a helpful customer service assistant. Always reply in English. "
-        "Keep answers short, polite and clear. Focus on HomeFixer Khulna services."
-    )
-    try:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_message}
-            ],
-            temperature=0.4
-        )
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        print(f"AI error: {e}")
-        return None
-
 def get_reply(user_message):
     """Custom reply -> AI -> fallback"""
     lang = detect_language(user_message)
 
     # 1️⃣ Custom replies
-    for item in custom_replies.get("replies", []):
+    for item in custom_replies.get("custom_replies", []):
         if item.get("question", "").lower() in user_message.lower():
             return item.get(f"answer_{lang}", item.get("answer_en"))
 
@@ -132,7 +106,7 @@ def webhook():
 
     return "OK", 200
 
-def send_message(recipient_id, message_text):
+def send_.message(recipient_id, message_text):
     """Send message via Facebook Messenger API"""
     url = f"https://graph.facebook.com/v13.0/me/messages"
     payload = {
