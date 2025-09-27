@@ -52,8 +52,12 @@ def get_reply(user_message):
 
     # 1️⃣ Custom replies
     for item in custom_replies.get("custom_replies", []):
-        if item.get("question", "").lower() in user_message.lower():
-            return item.get(f"answer_{lang}", item.get("answer_en"))
+        q = item.get("question", [])
+        if isinstance(q, str):
+            q = [q]  # একটাও যদি string হয়, list বানিয়ে নিলাম
+        for keyword in q:
+            if keyword.lower() in user_message.lower():
+                return item.get(f"answer_{lang}", item.get("answer_en"))
 
     # 2️⃣ AI response
     ai_response = get_ai_response(user_message, lang=lang)
