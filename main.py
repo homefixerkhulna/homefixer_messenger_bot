@@ -58,9 +58,9 @@ def get_reply(user_message):
 
     # 3️⃣ Fallback
     return (
-        "আমাদের একজন প্রতিনিধি সাথে যোগাযোগ করুন: WhatsApp: https://wa.me/8801711170639"
+        "আমাদের একজন প্রতিনিধি সাথে যোগাযোগ করুন: WhatsApp: https://wa.me/8801711170639 , +8801915200299"
         if lang == "bn"
-        else "Please contact our representative on WhatsApp: https://wa.me/8801711170639 phone": +8801915200299"
+        else "Please contact our representative on WhatsApp: https://wa.me/8801711170639 , phone: +8801915200299"
     )
 
 @app.route("/", methods=["GET"])
