@@ -17,6 +17,8 @@ with open("custom_replies.json", "r", encoding="utf-8") as f:
 
 # Keep track of users already greeted
 greeted_users = set()
+# Keep track of processed message IDs to avoid duplicates
+processed_messages = set()
 
 def detect_language(text):
     """Detect Bengali or English"""
@@ -30,7 +32,9 @@ def get_greeting(lang="bn"):
     if lang == "bn":
         return (
             "আসসালামু আলাইকুম। HomeFixerKhulna-তে আপনাকে স্বাগতম! "
-            "আমি আপনার ডিজিটাল সহকারী। আমি আপনাকে এসি, ফ্রিজ, ইলেকট্রিক, "
+            "🙋আপনার এক ফোনেই যেকোনো সমস্যার সমাধান🤗 "
+            "আমি HomeFixerKhulna এর এক জন সহকারী। আমি আপনাকে ইন্টেরিয়রডিজাইন, এসি, ফ্রিজ, ইলেকট্রিক, "
+            "বাসা ও অফিস স্থানান্তর এবং পরিস্কার, "
             "প্লাম্বিং এবং সিসিটিভি ক্যামেরা সার্ভিস সংক্রান্ত যেকোনো তথ্য দিয়ে সাহায্য করতে পারি। "
             "বলুন, আপনাকে কীভাবে সাহায্য করতে পারি?"
         )
@@ -80,9 +84,17 @@ def webhook():
             if "message" in msg and msg["message"].get("is_echo"):
                 continue
 
+            message_id = msg["message"].get("mid") if "message" in msg else None
             sender_id = msg.get("sender", {}).get("id")
             message = msg.get("message", {})
             user_message = message.get("text", "")
+
+            # 🚫 Prevent duplicate responses
+            if message_id and message_id in processed_messages:
+                print(f"Duplicate message skipped: {message_id}")
+                continue
+            if message_id:
+                processed_messages.add(message_id)
 
             # Handle audio attachments
             if "attachments" in message:
