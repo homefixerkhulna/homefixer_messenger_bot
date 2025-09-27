@@ -11,15 +11,14 @@ from config.config import VERIFY_TOKEN, PAGE_ACCESS_TOKEN
 
 app = Flask(__name__)
 
-# OpenAI client
-client = OpenAI()  # Make sure OPENAI_API_KEY is set
 
 # Load custom replies
 with open("custom_replies.json", "r", encoding="utf-8") as f:
     custom_replies = json.load(f)
+# OpenAI client
+client = OpenAI()  # Make sure OPENAI_API_KEY is set
 
-# Keep track of users already greeted
-greeted_users = set()
+
 
 def detect_language(text):
     """Detect Bengali or English"""
@@ -28,11 +27,13 @@ def detect_language(text):
         return "bn" if lang.startswith("bn") else "en"
     except langdetect.lang_detect_exception.LangDetectException:
         return "en"
-
+# Keep track of users already greeted
+greeted_users = set()
 def get_greeting(lang="bn"):
     if lang == "bn":
         return (
             "আসসালামু আলাইকুম। HomeFixerKhulna-তে আপনাকে স্বাগতম! "
+            "আপনার এক ফোনেই যেকোনো সমস্যার সমাধান"
             "আমি আপনার ডিজিটাল সহকারী। আমি আপনাকে এসি, ফ্রিজ, ইলেকট্রিক, "
             "প্লাম্বিং এবং সিসিটিভি ক্যামেরা সার্ভিস সংক্রান্ত যেকোনো তথ্য দিয়ে সাহায্য করতে পারি। "
             "বলুন, আপনাকে কীভাবে সাহায্য করতে পারি?"
@@ -48,7 +49,7 @@ def get_greeting(lang="bn"):
 def get_ai_response(user_message, lang="en"):
     """Generate AI response"""
     system_prompt = (
-        "আপনি একজন কাস্টমার সার্ভিস অ্যাসিস্ট্যান্ট। সব প্রশ্নের উত্তর বাংলায় দিন। "
+        "আপনি একজন কাস্টমার সার্ভিস অ্যাসিস্ট্যান্ট। সব প্রশ্নের উত্তর বাংলায় ও ইংলিশ দিন। "
         "সংক্ষেপে, ভদ্রভাবে ও পরিষ্কারভাবে লিখুন। HomeFixer Khulna এর সার্ভিসের সাথে সম্পর্কিত উত্তর দিন।"
     ) if lang == "bn" else (
         "You are a helpful customer service assistant. Always reply in English. "
