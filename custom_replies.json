@@ -81,74 +81,69 @@
   },
   "custom_replies": [
     {
-      "question": "contact number",
-      "answer_bn": "আমাদের একজন প্রতিনিধি সাথে যোগাযোগ করুন: WhatsApp: https://wa.me/8801711170639",
-      "answer_en": "Please contact our representative on WhatsApp: https://wa.me/8801711170639"
+      "question": ["contact number", "contact", "ফোন", "number"],
+      "answer_bn": "আমাদের একজন প্রতিনিধি সাথে যোগাযোগ করুন: WhatsApp: https://wa.me/8801711170639 , ফোন: +8801915200299",
+      "answer_en": "Please contact our representative on WhatsApp: https://wa.me/8801711170639 , phone: +8801915200299"
     },
     {
-      "question": "contact",
-      "answer_bn": "ফোন +8801915200299",
-      "answer_en": "phone +8801915200299"
+      "question": ["contact emaill", "ইমেইল"],
+      "answer_bn": "homefixerkhulna@gmail.com",
+      "answer_en": "homefixerkhulna@gmail.com."
     },
-     {
-      "question": "এসি",
+    {
+      "question": ["এসি", "ac", "air condition", "ac service"],
       "answer_bn": "হ্যাঁ, আমরা সকল ধরনের এসি সার্ভিস, মেরামত এবং ইনস্টলেশন প্রদান করি।",
       "answer_en": "Yes, we provide all types of AC servicing, repair, and installation."
     },
     {
-      "question": "fridge",
+      "question": ["ফ্রিজ", "fridge", "refrigerator"],
       "answer_bn": "আমরা সকল ধরনের ফ্রিজ সার্ভিস এবং মেরামত করি।",
       "answer_en": "We provide servicing and repair for all types of fridges."
     },
     {
-      "question": "ইলেকট্রিক",
+      "question": ["ইলেকট্রিক", "electric", "বিদ্যুৎ", "wiring"],
       "answer_bn": "আমাদের ইলেকট্রিক সার্ভিসে বাসা এবং অফিসের যেকোনো বৈদ্যুতিক সমস্যা সমাধান করা হয়।",
       "answer_en": "Our electric services handle any electrical issues at home and office."
     },
     {
-      "question": "electronics",
+      "question": ["electronics", "ইলেকট্রনিক্স", "gadget"],
       "answer_bn": "আমরা সকল ইলেকট্রনিক্স ডিভাইস সার্ভিস এবং মেরামত করি।",
       "answer_en": "We service and repair all electronic devices."
     },
     {
-      "question": "প্লাম্বিং",
+      "question": ["প্লাম্বিং", "plumbing", "pipe", "পাইপ"],
       "answer_bn": "আমরা প্লাম্বিং সমস্যার সমাধান করি, যেমন পাইপ লিক, টয়লেট বা সিঙ্ক ব্লক।",
       "answer_en": "We provide plumbing services including pipe leaks, toilet, and sink blockage."
     },
     {
-      "question": "cctv",
+      "question": ["cctv", "সিসি ক্যামেরা", "camera", "security"],
       "answer_bn": "আমরা সিসি ক্যামেরা ইনস্টলেশন, মেইনটেন্যান্স এবং সার্ভিস প্রদান করি।",
       "answer_en": "We offer CCTV camera installation, maintenance, and service."
     },
     {
-      "question": "বাসা স্থানান্তর",
+      "question": ["বাসা স্থানান্তর", "অফিস স্থানান্তর", "shifting", "moving", "cleaning"],
       "answer_bn": "আমরা বাসা এবং অফিস স্থানান্তর এবং পরিস্কার সার্ভিস প্রদান করি।",
       "answer_en": "We provide home and office moving and cleaning services."
     },
     {
-      "question": "painting",
+      "question": ["painting", "paint", "রঙ", "সংস্কার", "renovation"],
       "answer_bn": "আমরা রঙ ও সংস্কার কাজে অভিজ্ঞ। বাসা ও অফিসের অভ্যন্তর সাজানো হয়।",
       "answer_en": "We provide painting and renovation services for home and office interiors."
     },
     {
-      "question": "ইন্টেরিয়র ডিজাইন",
+      "question": ["ইন্টেরিয়র ডিজাইন", "interior design", "decor"],
       "answer_bn": "আমরা ইন্টেরিয়র ডিজাইন সার্ভিস দিয়ে থাকি, বাসা ও অফিসের জন্য কাস্টম ডিজাইন করা হয়।",
       "answer_en": "We offer interior design services with custom solutions for home and office."
     },
     {
-      "question": "price",
+      "question": ["price", "দাম", "খরচ", "charge"],
       "answer_bn": "আমাদের সার্ভিসের দাম কাজের ধরন এবং পরিমাণ অনুযায়ী শুরু হয় ৫০০ টাকা থেকে।",
       "answer_en": "Our service prices start from 500 BDT depending on type and scope of work."
     },
     {
-      "question": "location",
+      "question": ["location", "address", "অবস্থান"],
       "answer_bn": "আমাদের অবস্থান খুলনা, খালিশপুর, Thelagadi Market।",
       "answer_en": "We are located at Khalishpur, Khulna, Thelagadi Market."
-    },
-    {
-      "question": "contact",
-      "answer_bn": "আপনি আমাদের WhatsApp এ যোগাযোগ করতে পারেন: https://wa.me/8801711170639",
-      "answer_en": "You can contact us on WhatsApp: https://wa.me/8801711170639"
     }
   ]
 }
