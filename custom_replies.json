@@ -81,6 +81,11 @@
   },
   "custom_replies": [
     {
+      "question": "contact",
+      "answer_bn": "ফোন +8801915200299",
+      "answer_en": "phone +8801915200299"
+    },
+     {
       "question": "এসি",
       "answer_bn": "হ্যাঁ, আমরা সকল ধরনের এসি সার্ভিস, মেরামত এবং ইনস্টলেশন প্রদান করি।",
       "answer_en": "Yes, we provide all types of AC servicing, repair, and installation."
