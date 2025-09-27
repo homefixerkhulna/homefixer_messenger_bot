@@ -106,7 +106,7 @@ def webhook():
 
     return "OK", 200
 
-def send_.message(recipient_id, message_text):
+def send_message(recipient_id, message_text):
     """Send message via Facebook Messenger API"""
     url = f"https://graph.facebook.com/v13.0/me/messages"
     payload = {
