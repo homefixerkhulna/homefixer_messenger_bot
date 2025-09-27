@@ -54,7 +54,7 @@
       "#হোমফিক্সারখুলনা",
       "#খুলনাসার্ভিস",
       "#দ্রুতসার্ভিস",
-      "#বিশ্বস্তসার্ভিস",
+      "বিশ্বস্তসার্ভিস",
       "#টেকনিক্যালসাপোর্ট"
     ],
     "en": [
@@ -80,6 +80,11 @@
     ]
   },
   "custom_replies": [
+    {
+      "question": "contact number",
+      "answer_bn": "আমাদের একজন প্রতিনিধি সাথে যোগাযোগ করুন: WhatsApp: https://wa.me/8801711170639",
+      "answer_en": "Please contact our representative on WhatsApp: https://wa.me/8801711170639"
+    },
     {
       "question": "contact",
       "answer_bn": "ফোন +8801915200299",
