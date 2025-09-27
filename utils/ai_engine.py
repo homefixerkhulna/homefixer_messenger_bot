@@ -36,5 +36,5 @@ def get_ai_response(message, lang='en'):
         return (
             "আমাদের একজন প্রতিনিধি সাথে যোগাযোগ করুন: WhatsApp: https://wa.me/8801711170639"
             if lang == "bn"
-            else "Please contact our representative on WhatsApp: https://wa.me/8801711170639"
+            else "Please contact our representative on WhatsApp: https://wa.me/8801711170639 call 01915200299"
         )
