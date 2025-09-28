@@ -72,8 +72,9 @@ def get_reply(user_message):
 
     # 3️⃣ AI fallback
     ai_response = get_ai_response(user_message, lang=lang)
-    if ai_response and len(ai_response.strip()) > 0:
-        return ai_response
+if ai_response and len(ai_response.strip()) > 0:
+    return ai_response
+
 
     # 4️⃣ Default fallback
     return (
