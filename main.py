@@ -31,12 +31,12 @@ def detect_language(text):
 def get_greeting(lang="bn"):
     if lang == "bn":
         return (
-            "আসসালামু আলাইকুম। HomeFixerKhulna-তে আপনাকে স্বাগতম! "
-            "🙋আপনার এক ফোনেই যেকোনো সমস্যার সমাধান🤗 "
-            "আমি HomeFixerKhulna এর এক জন সহকারী। "
-            "আমি আপনাকে ইন্টেরিয়রডিজাইন, এসি, ফ্রিজ, ইলেকট্রিক, "
-            "বাসা ও অফিস স্থানান্তর এবং পরিস্কার, প্লাম্বিং এবং সিসিটিভি ক্যামেরা সার্ভিস সংক্রান্ত যেকোনো তথ্য দিয়ে সাহায্য করতে পারি। "
-            "বলুন, আপনাকে কীভাবে সাহায্য করতে পারি?"
+            "Assalamualaikum. HomeFixerKhulna-te apnake swagotom! "
+            "🙋Aponar ek phone-ei jekono somosshar somadhan🤗 "
+            "Ami HomeFixerKhulna er ek jon sohokari. "
+            "Ami apnake interior design, AC, fridge, electric, "
+            "basa o office sthanantor ebong porishkar, plumbing ebong CCTV camera service songkranto jekono tothyo diye sahajjo korte pari. "
+            "Bolun, apnake kibhabe sahajjo korte pari?"
         )
     else:
         return (
@@ -72,13 +72,12 @@ def get_reply(user_message):
 
     # 3️⃣ AI fallback
     ai_response = get_ai_response(user_message, lang=lang)
-if ai_response and len(ai_response.strip()) > 0:
-    return ai_response
-
+    if ai_response and len(ai_response.strip()) > 0:
+        return ai_response
 
     # 4️⃣ Default fallback
     return (
-        "আমাদের একজন প্রতিনিধি সাথে যোগাযোগ করুন: WhatsApp: https://wa.me/8801711170639 , +8801915200299"
+        "Amader ekjon protinidhir sathe jogajog korun: WhatsApp: https://wa.me/8801711170639 , +8801915200299"
         if lang == "bn"
         else "Please contact our representative on WhatsApp: https://wa.me/8801711170639 , phone: +8801915200299"
     )
