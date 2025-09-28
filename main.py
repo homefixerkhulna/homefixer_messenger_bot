@@ -60,7 +60,7 @@ def get_reply(user_message):
                 return item.get(f"answer_{lang}", item.get("answer_en"))
 
     # 2️⃣ Root JSON keys
-    root_keys = ["hi", "hello", "tagline", "page_name", "description_bn", "description_en"]
+    root_keys = ["hi", "হ্যালো", "hello", "tagline", "page_name", "description_bn", "description_en"]
     for key in root_keys:
         if key in msg_lower:
             if lang == "bn" and key.endswith("_bn"):
