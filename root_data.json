@@ -3,28 +3,8 @@
   "tagline": "Trusted Home and Commercial service",
   "description_bn": "আপনার এক ফোনেই যেকোনো সমস্যার সমাধান অনলাইন ও অফলাইন সার্ভিস ।",
   "services": {
-    "bn": [
-      "এসি",
-      "ফ্রিজ",
-      "ইলেকট্রিক",
-      "ইলেকট্রনিক্স",
-      "প্লাম্বিং",
-      "সিসি ক্যামেরা",
-      "বাসা ও অফিস স্থানান্তর এবং পরিস্কার",
-      "রঙ ও সংস্কার",
-      "ইন্টেরিয়র ডিজাইন"
-    ],
-    "en": [
-      "AC",
-      "Fridge",
-      "Electric",
-      "Electronics",
-      "Plumbing",
-      "CCTV Camera",
-      "Home and Office Moving and Cleaning",
-      "Painting and Renovation",
-      "Interior Design"
-    ]
+    "bn": ["এসি", "ফ্রিজ", "ইলেকট্রিক", "ইলেকট্রনিক্স", "প্লাম্বিং", "সিসি ক্যামেরা", "বাসা ও অফিস স্থানান্তর এবং পরিস্কার", "রঙ ও সংস্কার", "ইন্টেরিয়র ডিজাইন"],
+    "en": ["AC", "Fridge", "Electric", "Electronics", "Plumbing", "CCTV Camera", "Home and Office Moving and Cleaning", "Painting and Renovation", "Interior Design"]
   },
   "contact": {
     "facebook": "https://facebook.com/homefixerkhulna",
@@ -36,47 +16,7 @@
     "address": "Thelagadi Market, Mohiuddin Garden, 323 B, I, D, C Road Khalishpur, Khulna, Bangladesh, 9000"
   },
   "hashtags": {
-    "bn": [
-      "#এসি",
-      "#ফ্রিজ",
-      "#ইলেকট্রিক",
-      "#ইলেকট্রনিক্স",
-      "#প্লাম্বিং",
-      "#সিসিক্যামেরা",
-      "#বাসা",
-      "#অফিস",
-      "#স্থানান্তর",
-      "#পরিস্কার",
-      "#রঙ",
-      "#সংস্কার",
-      "#ইন্টেরিয়রডিজাইন",
-      "#হোমসার্ভিসখুলনা",
-      "#হোমফিক্সারখুলনা",
-      "#খুলনাসার্ভিস",
-      "#দ্রুতসার্ভিস",
-      "বিশ্বস্তসার্ভিস",
-      "#টেকনিক্যালসাপোর্ট"
-    ],
-    "en": [
-      "#ACServices",
-      "#RefrigeratorServices",
-      "#CleaningSolution",
-      "#Shifting",
-      "#Electric",
-      "#Electronics",
-      "#Gadgets",
-      "#Repair",
-      "#Plumbing",
-      "#Painting",
-      "#Renovation",
-      "#EmergencyServices",
-      "#CCTV",
-      "#CameraServices",
-      "#InteriorDesign",
-      "#KhulnaService",
-      "#HomeFixerKhulna",
-      "#HomeFixer",
-      "#homefixer"
-    ]
+    "bn": ["#এসি", "#ফ্রিজ", "#ইলেকট্রিক", "#ইলেকট্রনিক্স", "#প্লাম্বিং", "#সিসিক্যামেরা", "#বাসা", "#অফিস", "#স্থানান্তর", "#পরিস্কার", "#রঙ", "#সংস্কার", "#ইন্টেরিয়রডিজাইন", "#হোমসার্ভিসখুলনা", "#হোমফিক্সারখুলনা", "#খুলনাসার্ভিস", "#দ্রুতসার্ভিস", "বিশ্বস্তসার্ভিস", "#টেকনিক্যালসাপোর্ট"],
+    "en": ["#ACServices", "#RefrigeratorServices", "#CleaningSolution", "#Shifting", "#Electric", "#Electronics", "#Gadgets", "#Repair", "#Plumbing", "#Painting", "#Renovation", "#EmergencyServices", "#CCTV", "#CameraServices", "#InteriorDesign", "#KhulnaService", "#HomeFixerKhulna", "#HomeFixer", "#homefixer"]
   }
 }
