@@ -10,6 +10,7 @@ from utils.ai_engine import get_ai_response
 
 app = Flask(__name__)
 
+# Load root data and custom replies
 with open("root_data.json", "r", encoding="utf-8") as f:
     root_json = json.load(f)
 
@@ -52,15 +53,14 @@ def get_reply(user_message):
     # 1️⃣ Custom replies
     for item in custom_replies:
         questions = item.get("question")
-        if isinstance(questions, list):
-            if any(q.lower() in msg_lower for q in questions):
-                return item.get(f"answer_{lang}", item.get("answer_en"))
-        else:
-            if questions.lower() in msg_lower:
+        if isinstance(questions, str):
+            questions = [questions]
+        for q in questions:
+            if q.lower() in msg_lower:
                 return item.get(f"answer_{lang}", item.get("answer_en"))
 
     # 2️⃣ Root JSON keys
-    root_keys = ["hi", "হ্যালো", "hello", "tagline", "page_name", "description_bn", "description_en"]
+    root_keys = ["tagline", "page_name", "description_bn", "description_en"]
     for key in root_keys:
         if key in msg_lower:
             if lang == "bn" and key.endswith("_bn"):
@@ -72,7 +72,7 @@ def get_reply(user_message):
 
     # 3️⃣ AI fallback
     ai_response = get_ai_response(user_message, lang=lang)
-    if ai_response and len(ai_response.strip()) > 5:
+    if ai_response and len(ai_response.strip()) > 0:
         return ai_response
 
     # 4️⃣ Default fallback
@@ -116,11 +116,12 @@ def webhook():
                         user_message = speech_to_text(audio_url)
 
             # Send reply
-            if user_message:
+            if user_message.strip():
                 reply = get_reply(user_message)
                 save_lead(sender_id, user_message)
                 send_message(sender_id, reply)
             else:
+                # Only greet once per user
                 if sender_id not in greeted_users:
                     send_message(sender_id, get_greeting("bn"))
                     greeted_users.add(sender_id)
