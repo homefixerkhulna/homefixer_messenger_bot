@@ -16,10 +16,8 @@ with open("root_data.json", "r", encoding="utf-8") as f:
 with open("custom_replies.json", "r", encoding="utf-8") as f:
     custom_replies = json.load(f).get("custom_replies", [])
 
-
-# Keep track of users already greeted
+# Track greeted users and processed message IDs
 greeted_users = set()
-# Keep track of processed message IDs to avoid duplicates
 processed_messages = set()
 
 def detect_language(text):
@@ -48,7 +46,6 @@ def get_greeting(lang="bn"):
         )
 
 def get_reply(user_message):
-    """Custom reply -> Root JSON -> AI -> Fallback"""
     lang = detect_language(user_message)
     msg_lower = user_message.lower()
 
@@ -96,15 +93,21 @@ def webhook():
     data = request.json
     for entry in data.get("entry", []):
         for msg in entry.get("messaging", []):
-            # Ignore bot messages
+            # Ignore bot echo messages
             if "message" in msg and msg["message"].get("is_echo"):
                 continue
+
+            # Skip already processed messages
+            message_id = msg.get("message", {}).get("mid")
+            if message_id in processed_messages:
+                continue
+            processed_messages.add(message_id)
 
             sender_id = msg.get("sender", {}).get("id")
             message = msg.get("message", {})
             user_message = message.get("text", "")
 
-            # Handle audio
+            # Handle audio attachments
             if "attachments" in message:
                 attachment = message["attachments"][0]
                 if attachment.get("type") == "audio":
@@ -112,13 +115,12 @@ def webhook():
                     if audio_url:
                         user_message = speech_to_text(audio_url)
 
-            # Reply logic
+            # Send reply
             if user_message:
                 reply = get_reply(user_message)
                 save_lead(sender_id, user_message)
                 send_message(sender_id, reply)
             else:
-                # Only greet once per user
                 if sender_id not in greeted_users:
                     send_message(sender_id, get_greeting("bn"))
                     greeted_users.add(sender_id)
