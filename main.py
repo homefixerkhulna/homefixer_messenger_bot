@@ -66,13 +66,12 @@ def get_reply(user_message):
     root_keys = ["tagline", "page_name", "description_bn", "description_en"]
     for key in root_keys:
         if key in msg_lower:
-            # Return value based on language
             if lang == "bn" and key.endswith("_bn"):
-                return main_json.get(key)
+                return root_json.get(key)
             elif lang == "en" and key.endswith("_en"):
-                return main_json.get(key)
+                return root_json.get(key)
             else:
-                return main_json.get(key)
+                return root_json.get(key)
 
     # 3️⃣ AI fallback
     ai_response = get_ai_response(user_message, lang=lang)
