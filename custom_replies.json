@@ -64,6 +64,29 @@
       "question": ["location", "address", "অবস্থান"],
       "answer_bn": "আমাদের অবস্থান খুলনা, খালিশপুর, Thelagadi Market।",
       "answer_en": "We are located at Khalishpur, Khulna, Thelagadi Market."
+    },
+    {
+      "question": ["Ac cleaning প্রাইস কত ", "AC cleaning price", "এসি পরিষ্কারের দাম কত","এসি পরিষ্কারের","এসি ক্লিনিং", "এসি সার্ভিসিং"],
+      "answer_bn": "শুধুমাত্র এসি ইনডোর ক্লিনিং জেট ওয়াশ: 600৳
+ এসি ইনডোর + আউটডোর ক্লিনিং জেট ওয়াশ: 1000 ৳
+ বাইরের ঝুলন্ত কাজ প্রয়োজন হলে + 200 ৳
+ এসি জেট ওয়াশের সুবিধা:
+ উন্নত কার্যকারিতা: ময়লা ও ধুলো পরিষ্কার স্ট্যাম্পের ফলে এসি দ্রুত ও আমার মতামতের সাথে কাজ করে। 
+ বিশুদ্ধ বায়ু: এটি এসির অংশ পরিষ্কার করে, ফলে স্বাস্থ্যকর এবং বিশুদ্ধ বায়ু পাওয়া যায়। 
+ দীর্ঘ জীবন: নিশ্চিত করার ফলে যন্ত্রাংশের ওপর চাপ, যা এসির দীর্ঘস্থায়ীতা বাড়াতে সাহায্য করে। 
+
+ কী কী অন্তর্ভুক্ত থাকে:
+ ইনডোর এবং বহিরাগত নেটওয়ার্ক পরিষ্কার করা, এসি ফিয়ার পরিষ্কার করা, ড্রেন লাইন পরিষ্কার করা, কিছু ক্ষেত্রে ইঞ্জিন লেভেল এবং অন্যান্য বিষয় পরীক্ষা করা হয়।।",
+      "answer_en": "Only AC indoor cleaning Jet Wash: 600 ৳
+AC indoor + outdoor cleaning Jet Wash:1000 ৳
+If outdoor hanging work is required + 200 ৳
+Benefits of AC Jet Wash:
+Improved efficiency: The AC works faster and more efficiently due to the cleaning of dirt and dust. 
+Clean air: It cleans the inside of the AC, resulting in healthy and clean air. 
+Long life: Regular cleaning reduces the stress on the components, which helps increase the longevity of the AC. 
+
+What is included:
+Cleaning the indoor and outdoor units, cleaning the AC filter, cleaning the drain line, in some cases checking the gas level and other things."
     }
   ]
 }
