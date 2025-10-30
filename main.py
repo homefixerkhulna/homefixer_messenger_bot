@@ -50,8 +50,10 @@ def get_reply(user_message):
     lang = detect_language(user_message)
     msg_lower = user_message.lower()
 
-    # 1️⃣ Custom replies
+    # 1️⃣ Intent Matching: Check for custom replies (intents).
+    # Each item in custom_replies is treated as an intent category.
     for item in custom_replies:
+        # 2️⃣ Keyword Matching: If keywords match, provide the specific answer for that intent.
         questions = item.get("question")
         if isinstance(questions, str):
             questions = [questions]
@@ -59,7 +61,7 @@ def get_reply(user_message):
             if q.lower() in msg_lower:
                 return item.get(f"answer_{lang}", item.get("answer_en"))
 
-    # 2️⃣ Root JSON keys
+    # Check for root JSON keys (another form of intent)
     root_keys = [ "hi","tagline", "page_name", "description_bn", "description_en"]
     for key in root_keys:
         if key in msg_lower:
@@ -70,25 +72,25 @@ def get_reply(user_message):
             else:
                 return root_json.get(key)
 
-    # 3️⃣ AI fallback
+    # 3️⃣ AI Fallback: If no intent is matched, use the AI engine.
     ai_response = get_ai_response(user_message, lang=lang)
     if ai_response and len(ai_response.strip()) > 0:
         return ai_response
 
-    # 4️⃣ Default fallback
+    # Default Fallback: If AI also fails, provide a default contact message.
     return (
         "Amader ekjon protinidhir sathe jogajog korun: WhatsApp: https://wa.me/8801711170639 , +8801915200299"
         if lang == "bn"
         else "Please contact our representative on WhatsApp: https://wa.me/8801711170639 , phone: +8801915200299"
     )
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=['GET'])
 def verify():
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.verify_token") == VERIFY_TOKEN:
         return request.args.get("hub.challenge"), 200
     return "Verification failed", 403
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=['POST'])
 def webhook():
     data = request.json
     for entry in data.get("entry", []):
@@ -124,6 +126,26 @@ def webhook():
                 # Only greet once per user
                 if sender_id not in greeted_users:
                     send_message(sender_id, get_greeting("bn"))
+                    greeted_users.add(sender_id)
+
+    return "OK", 200
+
+def send_message(recipient_id, message_text):
+    url = f"https://graph.facebook.com/v13.0/me/messages"
+    payload = {"recipient": {"id": recipient_id}, "message": {"text": message_text}}
+    headers = {"Content-Type": "application/json"}
+    params = {"access_token": PAGE_ACCESS_TOKEN}
+    try:
+        response = requests.post(url, json=payload, headers=headers, params=params)
+        response.raise_for_status()
+        print(f"Message sent to {recipient_id}: {message_text}")
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to send message: {e}")
+
+if __name__ == "__main__":
+    from waitress import serve
+    port = int(os.environ.get("PORT", 5000))
+    serve(app, host="0.0.0.0", port=port)
                     greeted_users.add(sender_id)
 
     return "OK", 200
