@@ -146,23 +146,3 @@ if __name__ == "__main__":
     from waitress import serve
     port = int(os.environ.get("PORT", 5000))
     serve(app, host="0.0.0.0", port=port)
-                    greeted_users.add(sender_id)
-
-    return "OK", 200
-
-def send_message(recipient_id, message_text):
-    url = f"https://graph.facebook.com/v13.0/me/messages"
-    payload = {"recipient": {"id": recipient_id}, "message": {"text": message_text}}
-    headers = {"Content-Type": "application/json"}
-    params = {"access_token": PAGE_ACCESS_TOKEN}
-    try:
-        response = requests.post(url, json=payload, headers=headers, params=params)
-        response.raise_for_status()
-        print(f"Message sent to {recipient_id}: {message_text}")
-    except requests.exceptions.RequestException as e:
-        print(f"Failed to send message: {e}")
-
-if __name__ == "__main__":
-    from waitress import serve
-    port = int(os.environ.get("PORT", 5000))
-    serve(app, host="0.0.0.0", port=port)
