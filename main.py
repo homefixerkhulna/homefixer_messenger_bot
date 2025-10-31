@@ -62,7 +62,7 @@ def get_reply(user_message):
                 return item.get(f"answer_{lang}", item.get("answer_en"))
 
     # Check for root JSON keys (another form of intent)
-    root_keys = [ "hi","tagline", "page_name", "description_bn", "description_en"]
+    root_keys = [ "hi", "AC cleaning price", "এসি পরিষ্কারের মূল্য", "tagline", "page_name", "description_bn", "description_en"]
     for key in root_keys:
         if key in msg_lower:
             if lang == "bn" and key.endswith("_bn"):
